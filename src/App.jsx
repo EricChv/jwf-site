@@ -1,3 +1,4 @@
+import AboutSection from "./components/AboutSection"
 import HeroSection from "./components/HeroSection"
 import Navbar from "./components/Navbar"
 const App = () => {
@@ -5,7 +6,7 @@ const App = () => {
     <>
       <Navbar />
       <HeroSection />
-
+      <AboutSection />
     </>
   )
 }

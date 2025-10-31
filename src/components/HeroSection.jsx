@@ -81,7 +81,7 @@ const HeroSection = () => {
                   <input
                     type="tel"
                     name="phone"
-                    placeholder="(555) 123-4567"
+                    placeholder="(999) 123-4567"
                     required
                     className="w-full rounded-lg bg-white/10 border border-white/20 px-4 py-3 text-white placeholder-white/60 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/30 outline-none transition"
                   />
@@ -120,10 +120,10 @@ const HeroSection = () => {
                   Send Message
                 </button>
                 <p className="hidden">
-                  <label>
-                    Don’t fill this out if you’re human: <input name="bot-field" />
-                  </label>
-                </p>
+                <label>
+                  Don’t fill this out if you’re human: <input name="bot-field" />
+                </label>
+              </p>
               </form>
             </div>
           )}
