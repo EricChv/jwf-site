@@ -81,7 +81,11 @@ const Navbar = () => {
 
         {/* --- Mobile Hamburger --- */}
         <div className="lg:hidden">
-          <button onClick={toggleNavbar}>
+          <button 
+            onClick={toggleNavbar}
+            className="cursor-pointer p-2"
+            aria-label="Toggle menu"
+          >
             {mobileDrawerOpen ? <X /> : <Menu />}
           </button>
         </div>
