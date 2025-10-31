@@ -125,7 +125,7 @@ export const resourcesLinks = [
 ];
 
 export const socialLinks = [
-  { icon: <Instagram />, href: "https://www.instagram.com/jerseywoodflooring" },
-  { icon: <Globe />, href: "https://www.google.com/search?q=Jersey+Wood+Flooring" },
-  { icon: <Music2 />, href: "https://www.tiktok.com/@jerseywoodflooring" },
+  { icon: <Instagram size={22} />, href: "https://www.instagram.com/jerseywoodflooring" },
+  { icon: <Globe size={22} />, href: "https://www.google.com/search?q=Jersey+Wood+Flooring" },
+  { icon: <Music2 size={22} />, href: "https://www.tiktok.com/@jerseywoodfloorin" },
 ];
