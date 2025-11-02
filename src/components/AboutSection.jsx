@@ -1,5 +1,5 @@
 import React from "react";
-import aboutImg from "../assets/img-about.jpeg";
+import aboutImg from "../assets/about-img1.jpg";
 import { Ruler, Hammer, CheckCircle } from "lucide-react";
 
 const processSteps = [
@@ -25,8 +25,8 @@ const processSteps = [
 
 const AboutSection = () => {
   return (
-    <section className="py-20 bg-white/10 backdrop-blur-xl">
-      <div className="container mx-auto px-6 lg:flex lg:items-stretch lg:gap-12">
+    <section className="py-24">
+    <div className="container mx-auto px-6 lg:flex lg:items-start lg:gap-12">
         
   {/* Left Column: About + Process */}
   <div className="lg:flex-1 flex flex-col justify-center gap-1">
@@ -44,7 +44,7 @@ const AboutSection = () => {
 
     {/* Transition / lead-in text */}
     <p className="text-black/80 italic max-w-md mt-3">
-      Our simple, 3-step process ensures a seamless and stress-free flooring experience from start to finish. Here’s how it works:
+      Our simple, 3-step process ensures a straightforward and stress-free flooring experience from start to finish. Here’s how it works:
     </p>
     </div>
 
@@ -68,11 +68,11 @@ const AboutSection = () => {
   </div>
 
         {/* Right Column: Image */}
-        <div className="lg:flex-1 mb-8 lg:mb-0 rounded-2xl overflow-hidden shadow-2xl lg:order-last">
+        <div className="lg:flex-1 mb-8 lg:mb-0 rounded-2xl overflow-hidden shadow-2xl lg:order-last mt-6 lg:mt-7">
           <img
             src={aboutImg}
             alt="About Jersey Wood Flooring"
-            className="w-full h-full object-cover lg:h-full"
+            className="w-full h-full object-cover lg:h-[720px]"
           />
         </div>
 
