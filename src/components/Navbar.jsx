@@ -1,9 +1,10 @@
 import { useState } from "react";
-import logo from "../assets/logo-nobg-1.png";
+import logoLight from "../assets/logoLight.webp";
+
 import { navItems } from "../constants";
-import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
-import { Facebook, Instagram } from "lucide-react";
-import { FaTiktok, FaGoogle } from "react-icons/fa";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { FaInstagram, FaFacebookF, FaTiktok, FaGoogle } from "react-icons/fa";
+
 
 const Navbar = ({ darkMode, toggleDarkMode }) => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -13,16 +14,19 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
     <>
       {/* --- Navbar --- */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 backdrop-blur-xl shadow-md transition-all duration-500
-          ${darkMode ? "bg-gray-900/70 text-white" : "bg-neutral-100/70 text-black"}`}
+        className={`fixed top-0 left-0 w-full z-50 backdrop-blur-xl shadow-md transition-all duration-500 ${
+          darkMode
+            ? "bg-black/30 text-white"
+            : "bg-white/10 text-black"
+        }`}
       >
-        <nav className="container mx-auto flex justify-between items-center px-4 py-1">
+        <nav className="container mx-auto flex justify-between items-center px-1">
           {/* --- Left: Logo --- */}
           <div className="flex items-center gap-2">
             <img
-              src={logo}
+              src={logoLight}
               alt="logo"
-              className="lg:h-19 lg:w-19 h-12 w-12"
+              className="lg:h-17 lg:w-17 h-12 w-12"
             />
             <span className="text-base lg:text-xl font-semibold">
               Jersey Wood Flooring
@@ -36,27 +40,24 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
               {navItems.map((item, idx) =>
                 item.children ? (
                   <li key={idx} className="group relative">
-                    <button
-                      className={`flex items-center gap-1 px-2 py-1 rounded hover:${
-                        darkMode ? "bg-gray-700/50" : "bg-gray-200/50"
-                      } transition`}
-                    >
-                      {item.label} <ChevronDown size={14} />
-                    </button>
                     <div
-                      className={`absolute top-full right-0 rounded shadow-lg mt-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 ${
-                        darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+                      className={`absolute top-full right-0 rounded shadow-lg mt-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300  ${
+                        darkMode ? "bg-[#0f0f0f] text-gray-200" : "bg-gray-100 text-gray-800"
                       }`}
                     >
                       <ul className="p-3 w-44 space-y-1">
                         {item.children.map((child) => (
                           <li key={child.label}>
                             <a
-                              href={child.href}
-                              className="block px-2 py-1 rounded hover:bg-gray-300/30 transition"
-                            >
-                              {child.label}
-                            </a>
+  href={child.href}
+  className={`px-3 py-2 rounded-md transition-all duration-300 ${
+    darkMode
+      ? "text-gray-200 hover:text-white hover:bg-gray-700/50"
+      : "text-gray-800 hover:text-black hover:bg-gray-300/30"
+  }`}
+>
+  {child.label}
+</a>
                           </li>
                         ))}
                       </ul>
@@ -66,9 +67,11 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                   <li key={idx}>
                     <a
                       href={item.href}
-                      className={`px-2 py-1 rounded hover:${
-                        darkMode ? "bg-gray-700/50" : "bg-gray-200/50"
-                      } transition`}
+                      className={`px-3 py-2 rounded-md transition-all duration-300 ${
+                        darkMode
+                          ? "text-gray-200 hover:text-white hover:bg-gray-700/50"
+                          : "text-gray-800 hover:text-black hover:bg-gray-300/30"
+                      }`}
                     >
                       {item.label}
                     </a>
@@ -80,10 +83,10 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             {/* --- Dark Mode Toggle Button --- */}
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded hover:bg-gray-300/30 transition"
+              className="p-3 rounded hover:bg-gray-300/30 transition"
               aria-label="Toggle Dark Mode"
             >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {darkMode ? <Sun size={19} /> : <Moon size={19} />}
             </button>
 
             {/* --- Mobile Hamburger --- */}
@@ -103,11 +106,19 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
 
       {/* --- Mobile Drawer --- */}
       <div
-        className={`fixed top-14 left-0 w-full z-40 backdrop-blur-xl transition-all duration-300 transform ${
+        className={`fixed top-11 left-0 w-full z-40 backdrop-blur-xl transition-all duration-300 transform ${
           mobileDrawerOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
-        } ${darkMode ? "bg-gray-900/70 text-white" : "bg-neutral-100/90 text-black"} rounded-b-3xl shadow-2xl border-t border-gray-500/20`}
+        } ${
+          darkMode 
+          ? "bg-black/30 text-white" 
+          : "bg-white/30 text-black"
+        } 
+        rounded-b-3xl 
+        shadow-[0_8px_25px_rgba(0,0,0,0.80)] 
+        border-t 
+        border-gray-500/20`}
       >
         <div className="p-6">
           <ul className="flex flex-col items-center gap-4 w-full text-lg">
@@ -146,17 +157,17 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
 
           {/* Social Icons */}
           <div className="flex justify-center gap-6">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer">
-              <Facebook size={22} />
-            </a>
             <a href="https://instagram.com" target="_blank" rel="noreferrer">
-              <Instagram size={22} />
+              <FaInstagram size={22}/>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noreferrer">
+              <FaFacebookF size={21}/>
             </a>
             <a href="https://tiktok.com" target="_blank" rel="noreferrer">
-              <FaTiktok size={22} />
+              <FaTiktok size={21}/>
             </a>
             <a href="https://google.com" target="_blank" rel="noreferrer">
-              <FaGoogle size={22} />
+              <FaGoogle size={21}/>
             </a>
           </div>
         </div>

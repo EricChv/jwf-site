@@ -1,107 +1,115 @@
 import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const galleryAlbums = [
   {
-    title: "Hardwood Floor Project",
+    title: "1. Hardwood Floor Project",
     description:
-      "Removal of old flooring, installation, sanding, buffing, staining, and finishing.",
+      "Removal of old carpet, installation, sanding, staining, buffing, and finishing.",
     images: [
-      "/src/assets/project-gallery/a1.webp",
-      "/src/assets/project-gallery/a2.webp",
-      "/src/assets/project-gallery/a3.webp",
-      "/src/assets/project-gallery/a4.webp",
-      "/src/assets/project-gallery/a5.webp",
+      "/src/assets/prj-1/a1.webp",
+      "/src/assets/prj-1/a2.webp",
+      "/src/assets/prj-1/a3.webp",
+      "/src/assets/prj-1/a4.webp",
+      "/src/assets/prj-1/a5.webp",
+      "/src/assets/prj-1/a6.webp",
+      "/src/assets/prj-1/a7.webp",
     ],
   },
   {
-    title: "Album 2",
-    description:
-      "Clean, modern installations that highlight our precision and design versatility across a range of interiors.",
+    title: "2. Hardwood Floor Project",
+    description: "Sanding, staining, buffing, and finishing.",
     images: [
-      
-      "/src/assets/project-gallery/6.webp",
+      "/src/assets/prj-2/a1.gif",
+      "/src/assets/prj-2/a3.webp",
     ],
   },
   {
-    title: "Album 3",
-    description:
-      "Restorations and refinishing projects that bring old floors back to life with a timeless, natural finish.",
+    title: "3. Hardwood Floor Project",
+    description: "Sanding, staining, buffing, and finishing.",
     images: [
-      "/src/assets/project-gallery/7.webp",
-      "/src/assets/project-gallery/8.webp",
-      "/src/assets/project-gallery/9.webp",
+      "/src/assets/prj-3/a1.webp",
+      "/src/assets/prj-3/a2.webp",
+      "/src/assets/prj-3/a3.webp",
+      "/src/assets/prj-3/a1-2.webp",
+      "/src/assets/prj-3/a2-2.webp",
+      // "/src/assets/prj-3/a3-2.webp",
+      "/src/assets/prj-3/a4.webp",
+      // "/src/assets/prj-3/a3-3.webp",
     ],
   },
 ];
 
-const GallerySection = () => {
+const GallerySection = ({ darkMode }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-100px 0px" });
 
   return (
     <section
       ref={ref}
       id="gallery"
-      className="py-24"
+      className={`py-20 transition-colors duration-400`}
     >
       <div className="container mx-auto px-6 text-center">
         {/* --- Section Heading --- */}
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className={`text-3xl md:text-4xl font-bold mb-4 ${
+              darkMode ? "text-white" : "text-gray-900"
+            }`}
+        >
           Gallery
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-          Explore our past work, organized into curated albums that highlight
+        </motion.h2>
+        <p
+          className={`max-w-2xl mx-auto mb-12 ${
+            darkMode ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
+          Explore our past work, organized into albums that highlight
           different styles, materials, and finishes.
         </p>
 
         {/* --- Albums --- */}
         <div className="flex flex-col gap-20">
           {galleryAlbums.map((album, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              animate={
-                isInView
-                  ? { opacity: 1, y: 0 }
-                  : { opacity: 0, y: 40 } // fade in/out as you scroll
-              }
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="text-left"
-            >
+            <div key={index} className="text-left">
               {/* Album Header */}
               <div className="mb-6">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                <h3
+                  className={`text-2xl font-semibold mb-2 ${
+                    darkMode ? "text-white" : "text-gray-900"
+                  }`}
+                >
                   {album.title}
                 </h3>
-                <p className="text-gray-700 max-w-2xl">
+                <p
+                  className={`max-w-2xl ${
+                    darkMode ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
                   {album.description}
                 </p>
               </div>
 
-              {/* Album Images */}
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {/* 🧱 Masonry Layout start */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4 justify-center">
                 {album.images.map((src, i) => (
-                  <motion.div
+                  <div
                     key={i}
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={
-                      isInView
-                        ? { opacity: 1, y: 0 }
-                        : { opacity: 0, y: 40 }
-                    }
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl bg-white/50 backdrop-blur-md border border-white/20 transition-all duration-500"
+                    className="w-full  aspect-[3/4] overflow-hidden rounded-xl hover:scale-103 transition-transform duration-300"
                   >
                     <img
                       src={src}
                       alt={`${album.title} ${i + 1}`}
-                      className="w-full h-64 object-cover hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                      className="w-full h-full object-cover"
                     />
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+              {/* 🧱 Masonry Layout end */}
+            </div>
           ))}
         </div>
       </div>

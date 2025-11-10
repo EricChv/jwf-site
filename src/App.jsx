@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+
 import AboutSection from "./components/AboutSection";
 import GallerySection from "./components/GallerySection";
 import HeroSection from "./components/HeroSection";
 import Navbar from "./components/Navbar";
 import ServicesSection from "./components/ServicesSection";
+import ContactSection from "./components/ContactSection";
+import Footer from "./components/Footer"
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -22,14 +26,66 @@ const App = () => {
   };
 
   return (
-    <div className={darkMode ? "dark" : ""}>
-      <div className="bg-gradient-to-b from-white/90 to-gray-200/70 dark:from-gray-900/90 dark:to-gray-800/90 min-h-screen">
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <HeroSection darkMode={darkMode} />
-        <AboutSection />
-        <ServicesSection />
-        <GallerySection />
+    <div
+  className={`${
+    darkMode
+      ? "bg-[#161616]"
+      : "bg-gradient-to-b from-gray-50 to-gray-100"
+  } transition-colors duration-400`}
+>
+      {/* No global gradient, background is handled by each section */}
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <HeroSection darkMode={darkMode} />
+      <AboutSection darkMode={darkMode} />
+      
+      {/* --- Animated Spacer Bar --- */}
+      <div className="flex justify-center py-20">
+        <motion.div
+          className={`w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full transition-colors duration-300 ${
+            darkMode ? "bg-[#6e7073]" : "bg-black/10"
+          }`}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ transformOrigin: "center" }}
+          viewport={{ once: true }}
+        />
       </div>
+
+      <ServicesSection darkMode={darkMode} />
+
+      {/* --- Animated Spacer Bar --- */}
+      <div className="flex justify-center py-10">
+        <motion.div
+          className={`w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full transition-colors duration-300 ${
+            darkMode ? "bg-[#6e7073]" : "bg-black/10"
+          }`}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ transformOrigin: "center" }}
+          viewport={{ once: true }}
+        />
+      </div>
+
+      <GallerySection darkMode={darkMode} />
+
+      {/* --- Animated Spacer Bar --- */}
+      <div className="flex justify-center py-10">
+        <motion.div
+          className={`w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full transition-colors duration-300 ${
+            darkMode ? "bg-[#6e7073]" : "bg-black/10"
+          }`}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ transformOrigin: "center" }}
+          viewport={{ once: true }}
+        />
+      </div>
+      
+      <ContactSection darkMode={darkMode} />
+      <Footer darkMode={darkMode} />
     </div>
   );
 };

@@ -1,11 +1,16 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class', // or 'media' if you want OS preference
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['"Poppins"', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
