@@ -62,18 +62,23 @@ const HeroSection = ({ darkMode }) => {
           {submitted ? (
             <div
               className={`backdrop-blur-xl ${
-                darkMode ? "bg-gray-900/50 border-gray-700/30 text-white" : "bg-white/20 border-white/30 text-black"
+                darkMode
+                  ? "bg-black/30 text-white"
+                  : "bg-white/20 text-black"
               } p-8 rounded-2xl shadow-2xl w-full max-w-md text-center`}
             >
               <h2 className="text-2xl font-semibold mb-2">Thank you!</h2>
               <p className={darkMode ? "text-white/80" : "text-gray-800"}>
-                Your message has been sent successfully. We will get back to you soon.
+                Your message has been sent successfully.<br />
+                We'll get back to you soon.
               </p>
             </div>
           ) : (
             <div
               className={`backdrop-blur-xl ${
-                darkMode ? "bg-gray-900/30 border-gray-700/30 text-white" : "bg-white/20 border-white/30 text-black"
+                darkMode
+                  ? "bg-black/30  text-white"
+                  : "bg-white/20 text-black"
               } p-8 rounded-2xl shadow-2xl w-full max-w-md text-left`}
             >
               <form
@@ -85,8 +90,13 @@ const HeroSection = ({ darkMode }) => {
               >
                 <input type="hidden" name="form-name" value="contact" />
 
+                {/* Name */}
                 <div>
-                  <label className={`block text-sm font-medium mb-1 ${darkMode ? "text-white/90" : "text-gray-800"}`}>
+                  <label
+                    className={`block text-sm font-medium mb-1 ${
+                      darkMode ? "text-white/90" : "text-gray-800"
+                    }`}
+                  >
                     Full Name
                   </label>
                   <input
@@ -94,16 +104,21 @@ const HeroSection = ({ darkMode }) => {
                     name="name"
                     placeholder="John Doe"
                     required
-                    className={`w-full rounded-lg px-4 py-3 border ${
+                    className={`w-full rounded-lg px-4 py-3 outline-none transition ${
                       darkMode
-                        ? "bg-gray-900/20 border-gray-700 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                        : "bg-white/10 border-white/20 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                    } outline-none transition`}
+                        ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20"
+                        : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
+                    }`}
                   />
                 </div>
 
+                {/* Phone */}
                 <div>
-                  <label className={`block text-sm font-medium mb-1 ${darkMode ? "text-white/90" : "text-gray-800"}`}>
+                  <label
+                    className={`block text-sm font-medium mb-1 ${
+                      darkMode ? "text-white/90" : "text-gray-800"
+                    }`}
+                  >
                     Phone Number
                   </label>
                   <input
@@ -111,16 +126,21 @@ const HeroSection = ({ darkMode }) => {
                     name="phone"
                     placeholder="(999) 123-4567"
                     required
-                    className={`w-full rounded-lg px-4 py-3 border ${
+                    className={`w-full rounded-lg px-4 py-3 outline-none transition ${
                       darkMode
-                        ? "bg-gray-900/20 border-gray-700 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                        : "bg-white/10 border-white/20 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                    } outline-none transition`}
+                        ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20"
+                        : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
+                    }`}
                   />
                 </div>
 
+                {/* Email */}
                 <div>
-                  <label className={`block text-sm font-medium mb-1 ${darkMode ? "text-white/90" : "text-gray-800"}`}>
+                  <label
+                    className={`block text-sm font-medium mb-1 ${
+                      darkMode ? "text-white/90" : "text-gray-800"
+                    }`}
+                  >
                     Email Address
                   </label>
                   <input
@@ -128,16 +148,21 @@ const HeroSection = ({ darkMode }) => {
                     name="email"
                     placeholder="you@email.com"
                     required
-                    className={`w-full rounded-lg px-4 py-3 border ${
+                    className={`w-full rounded-lg px-4 py-3 outline-none transition ${
                       darkMode
-                        ? "bg-gray-900/20 border-gray-700 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                        : "bg-white/10 border-white/20 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                    } outline-none transition`}
+                        ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20"
+                        : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
+                    }`}
                   />
                 </div>
 
+                {/* Message */}
                 <div>
-                  <label className={`block text-sm font-medium mb-1 ${darkMode ? "text-white/90" : "text-gray-800"}`}>
+                  <label
+                    className={`block text-sm font-medium mb-1 ${
+                      darkMode ? "text-white/90" : "text-gray-800"
+                    }`}
+                  >
                     Message
                   </label>
                   <textarea
@@ -145,28 +170,30 @@ const HeroSection = ({ darkMode }) => {
                     rows="4"
                     placeholder="Tell us about your project..."
                     required
-                    className={`w-full rounded-lg px-4 py-3 border ${
+                    className={`w-full rounded-lg px-4 py-3 outline-none transition ${
                       darkMode
-                        ? "bg-gray-900/20 border-gray-700 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                        : "bg-white/10 border-white/20 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                    } outline-none transition`}
+                        ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20"
+                        : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
+                    }`}
                   />
                 </div>
 
+                {/* Button */}
                 <button
                   type="submit"
                   className={`w-full py-3 rounded-lg shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
                     darkMode
-                      ? "bg-gray-900/20 hover:bg-gray-800/20 text-white"
-                      : "bg-white/10 hover:bg-white/20 text-gray-800"
+                      ? "bg-black/10 hover:bg-black/30 text-white"
+                      : "bg-white/10 hover:bg-white/1 text-gray-800"
                   }`}
                 >
                   Send
                 </button>
 
+                {/* Honeypot */}
                 <p className="hidden">
                   <label>
-                    Don’t fill this out if you’re human: <input name="bot-field" />
+                    Don’t fill this out if you're human: <input name="bot-field" />
                   </label>
                 </p>
               </form>

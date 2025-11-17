@@ -107,10 +107,10 @@ const ContactSection = ({ darkMode }) => {
                     name="name"
                     placeholder="John Doe"
                     required
-                    className={`w-full rounded-lg px-4 py-3 border focus:outline-none focus:ring-2 transition ${
+                    className={`w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 transition ${
                       darkMode
-                        ? "bg-[#2a2a2a] border-white/10 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                        : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-gray-300 focus:ring-2 focus:ring-gray-200"
+                        ? "bg-black/25 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
+                        : "bg-white text-gray-900 placeholder-gray-500 focus:border-gray-300 focus:ring-2 focus:ring-gray-200"
                     }`}
                   />
                 </div>
@@ -129,10 +129,10 @@ const ContactSection = ({ darkMode }) => {
                     name="phone"
                     placeholder="(999) 123-4567"
                     required
-                    className={`w-full rounded-lg px-4 py-3 border focus:outline-none focus:ring-2 transition ${
+                    className={`w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 transition ${
                       darkMode
-                        ? "bg-[#2a2a2a] border-white/10 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                        : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-gray-300 focus:ring-2 focus:ring-gray-200"
+                        ? "bg-black/25 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
+                        : "bg-white text-gray-900 placeholder-gray-500 focus:border-gray-300 focus:ring-2 focus:ring-gray-200"
                     }`}
                   />
                 </div>
@@ -151,10 +151,10 @@ const ContactSection = ({ darkMode }) => {
                     name="email"
                     placeholder="you@email.com"
                     required
-                    className={`w-full rounded-lg px-4 py-3 border focus:outline-none focus:ring-2 transition ${
+                    className={`w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 transition ${
                       darkMode
-                        ? "bg-[#2a2a2a] border-white/10 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                        : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-gray-300 focus:ring-2 focus:ring-gray-200"
+                        ? "bg-black/25 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
+                        : "bg-white text-gray-900 placeholder-gray-500 focus:border-gray-300 focus:ring-2 focus:ring-gray-200"
                     }`}
                   />
                 </div>
@@ -173,10 +173,10 @@ const ContactSection = ({ darkMode }) => {
                     rows="4"
                     placeholder="Tell us about your project..."
                     required
-                    className={`w-full rounded-lg px-4 py-3 border focus:outline-none focus:ring-2 transition ${
+                    className={`w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 transition ${
                       darkMode
-                        ? "bg-[#2a2a2a] border-white/10 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                        : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-gray-300 focus:ring-2 focus:ring-gray-200"
+                        ? "bg-black/25 text-white placeholder-white/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
+                        : "bg-white text-gray-900 placeholder-gray-500 focus:border-gray-300 focus:ring-2 focus:ring-gray-200"
                     }`}
                   />
                 </div>
@@ -186,7 +186,7 @@ const ContactSection = ({ darkMode }) => {
                   type="submit"
                   className={`w-full py-3 rounded-lg font-semibold shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:outline-none ${
                     darkMode
-                      ? "bg-[#2a2a2a] text-gray-200 hover:bg-white/10"
+                      ? "bg-black/40 text-gray-200 hover:bg-black/30"
                       : "bg-[#ffffff] text-gray-800 hover:bg-gray-200"
                   }`}
                 >
@@ -205,13 +205,13 @@ const ContactSection = ({ darkMode }) => {
         </div>
 
         {/* Contact Info */}
-        <div className={`mt-20 text-center space-y-5 ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
+        <div className={`mt-20 text-center space-y-5 ${darkMode ? "text-white" : "text-gray-600"}`}>
           <p className="text-sm opacity-70
           ">Prefer to reach out directly?</p>
 
           <p className="text-lg font-medium flex items-center justify-center gap-2">
             <PhoneIcon
-              className={`h-6 w-6 ${
+              className={`h-5 w-5 ${
                 darkMode ? "text-gray-300" : "text-gray-600"
               }`}
             />
@@ -222,7 +222,7 @@ const ContactSection = ({ darkMode }) => {
 
           <p className="text-lg font-medium flex items-center justify-center gap-2">
             <ChatBubbleBottomCenterTextIcon
-              className={`h-6 w-6 ${
+              className={`h-5 w-5 ${
                 darkMode ? "text-gray-300" : "text-gray-600"
           }`}
             />
@@ -231,7 +231,7 @@ const ContactSection = ({ darkMode }) => {
 
           <p className="text-lg font-medium flex items-center justify-center gap-2">
             <EnvelopeIcon
-              className={`h-6 w-6 ${
+              className={`h-5 w-5 ${
                 darkMode ? "text-gray-300" : "text-gray-600"
               }`}
             />

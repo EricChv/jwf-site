@@ -33,7 +33,6 @@ const App = () => {
       : "bg-gradient-to-b from-gray-50 to-gray-100"
   } transition-colors duration-400`}
 >
-      {/* No global gradient, background is handled by each section */}
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <HeroSection darkMode={darkMode} />
       <AboutSection darkMode={darkMode} />
@@ -42,7 +41,7 @@ const App = () => {
       <div className="flex justify-center py-20">
         <motion.div
           className={`w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full transition-colors duration-300 ${
-            darkMode ? "bg-[#6e7073]" : "bg-black/10"
+            darkMode ? "bg-white/10" : "bg-black/10"
           }`}
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -58,7 +57,7 @@ const App = () => {
       <div className="flex justify-center py-10">
         <motion.div
           className={`w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full transition-colors duration-300 ${
-            darkMode ? "bg-[#6e7073]" : "bg-black/10"
+            darkMode ? "bg-white/10" : "bg-black/10"
           }`}
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -74,7 +73,7 @@ const App = () => {
       <div className="flex justify-center py-10">
         <motion.div
           className={`w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full transition-colors duration-300 ${
-            darkMode ? "bg-[#6e7073]" : "bg-black/10"
+            darkMode ? "bg-black/20" : "bg-black/10"
           }`}
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}

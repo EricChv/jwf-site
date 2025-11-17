@@ -6,7 +6,7 @@ const services = [
   {
     title: "Hardwood Installation",
     description:
-      "We install premium hardwood floors with precision and craftsmanship, delivering timeless beauty and unmatched durability for any space.",
+      "We remove old flooring and install high-quality hardwood that creates beautiful, natural floors for your home. From start to finish, we handle the prep, installation, and finishing to create floors that last for years.",
     image: "/src/assets/services/service-hardwood.webp",
   },
   {
@@ -101,7 +101,7 @@ const ServicesSection = ({ darkMode }) => {
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               className={`group w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl  backdrop-blur-md ${
                 darkMode
