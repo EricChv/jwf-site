@@ -11,10 +11,13 @@
     "tw:init": "tailwindcss init"
   },
   "dependencies": {
+    "@fancyapps/ui": "^6.1.5",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.16",
     "@tailwindplus/elements": "^1.0.18",
     "framer-motion": "^12.23.24",
+    "fslightbox": "^3.7.4",
+    "fslightbox-react": "^2.0.0",
     "lucide-react": "^0.548.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

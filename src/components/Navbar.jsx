@@ -1,43 +1,23 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import logoLight from "../assets/logoLight.webp";
 
 import { navItems } from "../constants";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { FaInstagram, FaFacebookF, FaTiktok, FaGoogle } from "react-icons/fa";
 
+
 const Navbar = ({ darkMode, toggleDarkMode }) => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-  const drawerRef = useRef(null);
-
   const toggleNavbar = () => setMobileDrawerOpen(!mobileDrawerOpen);
-
-  // Close drawer on click outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (drawerRef.current && !drawerRef.current.contains(event.target)) {
-        setMobileDrawerOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Close drawer on ESC key
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") setMobileDrawerOpen(false);
-    };
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
-  }, []);
 
   return (
     <>
       {/* --- Navbar --- */}
       <header
         className={`fixed top-0 left-0 w-full z-50 backdrop-blur-xl shadow-md transition-all duration-500 ${
-          darkMode ? "bg-black/30 text-white" : "bg-white/10 text-black"
+          darkMode
+            ? "bg-black/30 text-white"
+            : "bg-white/10 text-black"
         }`}
       >
         <nav className="container mx-auto flex justify-between items-center px-1">
@@ -69,15 +49,15 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                         {item.children.map((child) => (
                           <li key={child.label}>
                             <a
-                              href={child.href}
-                              className={`px-3 py-2 rounded-md transition-all duration-300 ${
-                                darkMode
-                                  ? "text-gray-200 hover:text-white hover:bg-gray-700/50"
-                                  : "text-gray-800 hover:text-black hover:bg-gray-300/30"
-                              }`}
-                            >
-                              {child.label}
-                            </a>
+                            href={child.href}
+                            className={`px-3 py-2 rounded-md transition-all duration-300 ${
+                              darkMode
+                                ? "text-gray-200 hover:text-white hover:bg-gray-700/50"
+                                : "text-gray-800 hover:text-black hover:bg-gray-300/30"
+                            }`}
+                          >
+                            {child.label}
+                          </a>
                           </li>
                         ))}
                       </ul>
@@ -90,7 +70,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                       className={`px-3 py-2 rounded-md transition-all duration-300 ${
                         darkMode
                           ? "text-gray-200 hover:text-white hover:bg-gray-700/50"
-                          : "text-gray-900 hover:text-black hover:bg-gray-300/30"
+                          : "text-gray-800 hover:text-black hover:bg-gray-300/30"
                       }`}
                     >
                       {item.label}
@@ -126,13 +106,14 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
 
       {/* --- Mobile Drawer --- */}
       <div
-        ref={drawerRef}
         className={`fixed top-11 left-0 w-full z-40 backdrop-blur-xl transition-all duration-300 transform ${
           mobileDrawerOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
         } ${
-          darkMode ? "bg-black/30 text-white" : "bg-white/30 text-black"
+          darkMode 
+          ? "bg-black/30 text-white" 
+          : "bg-white/30 text-black"
         } 
         rounded-b-3xl 
         shadow-[0_8px_25px_rgba(0,0,0,0.80)] 
@@ -177,16 +158,16 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
           {/* Social Icons */}
           <div className="flex justify-center gap-6">
             <a href="https://instagram.com" target="_blank" rel="noreferrer">
-              <FaInstagram size={22} />
+              <FaInstagram size={22}/>
             </a>
             <a href="https://facebook.com" target="_blank" rel="noreferrer">
-              <FaFacebookF size={21} />
+              <FaFacebookF size={21}/>
             </a>
             <a href="https://tiktok.com" target="_blank" rel="noreferrer">
-              <FaTiktok size={21} />
+              <FaTiktok size={21}/>
             </a>
             <a href="https://google.com" target="_blank" rel="noreferrer">
-              <FaGoogle size={21} />
+              <FaGoogle size={21}/>
             </a>
           </div>
         </div>
