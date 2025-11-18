@@ -4,7 +4,7 @@ import { Hammer, Ruler, Paintbrush, Layers, Wrench, ShieldCheck } from "lucide-r
 import { Instagram, Globe, Music2 } from "lucide-react";
 
 export const navItems = [
-  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },

@@ -21,16 +21,18 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
         }`}
       >
         <nav className="container mx-auto flex justify-between items-center px-1">
-          {/* --- Left: Logo --- */}
+          {/* --- Left: Logo (clicking goes to Home) --- */}
           <div className="flex items-center gap-2">
-            <img
-              src={logoLight}
-              alt="logo"
-              className="lg:h-17 lg:w-17 h-12 w-12"
-            />
-            <span className="text-base lg:text-xl font-semibold">
-              Jersey Wood Flooring
-            </span>
+            <a href="#home" className="flex items-center gap-2">
+              <img
+                src={logoLight}
+                alt="logo"
+                className="lg:h-17 lg:w-17 h-12 w-12"
+              />
+              <span className="text-base lg:text-xl font-semibold">
+                Jersey Wood Flooring
+              </span>
+            </a>
           </div>
 
           {/* --- Right: Nav Items + Dark Mode Toggle --- */}
@@ -70,7 +72,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                       className={`px-3 py-2 rounded-md transition-all duration-300 ${
                         darkMode
                           ? "text-gray-200 hover:text-white hover:bg-gray-700/50"
-                          : "text-gray-800 hover:text-black hover:bg-gray-300/30"
+                          : "text-gray-900 hover:text-black hover:bg-gray-300/30"
                       }`}
                     >
                       {item.label}
@@ -131,6 +133,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                       <li key={child.label}>
                         <a
                           href={child.href}
+                          onClick={() => setMobileDrawerOpen(false)}
                           className="block px-2 py-1 rounded hover:bg-gray-300/30 transition w-full"
                         >
                           {child.label}
@@ -139,10 +142,11 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                     ))}
                   </ul>
                 </details>
-              ) : (
+                ) : (
                 <li key={idx}>
                   <a
                     href={item.href}
+                    onClick={() => setMobileDrawerOpen(false)}
                     className="block w-full text-center px-2 py-1 rounded hover:bg-gray-300/30 transition"
                   >
                     {item.label}

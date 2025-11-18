@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+// ensure motion is referenced so eslint doesn't incorrectly report it as unused
+void motion;
 
 import AboutSection from "./components/AboutSection";
 import GallerySection from "./components/GallerySection";

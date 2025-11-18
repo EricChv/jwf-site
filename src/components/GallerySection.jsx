@@ -1,5 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import { useState, useCallback } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+// ensure `motion` is referenced so linters that don't detect JSX usage treat it as used
+void motion;
+import Lightbox from "./Lightbox";
+
 
 const galleryAlbums = [
   {
@@ -8,16 +12,16 @@ const galleryAlbums = [
     category: "Hardwood",
     description: "Sanding, staining, buffing, and finishing of hardwood flooring.",
     before: [
-      "/src/assets/prj-5/before/1.webp",
-      "/src/assets/prj-5/before/2.webp",
-      "/src/assets/prj-5/before/5.webp",
-      "/src/assets/prj-5/before/4.webp",
+      "/project-gallery/prj-5/before/1.webp",
+      "/project-gallery/prj-5/before/2.webp",
+      "/project-gallery/prj-5/before/5.webp",
+      "/project-gallery/prj-5/before/4.webp",
     ],
     after: [
-      "/src/assets/prj-5/after/2.webp",
-      "/src/assets/prj-5/after/3.webp",
-      "/src/assets/prj-5/after/5.webp",
-      "/src/assets/prj-5/after/4.webp",
+      "/project-gallery/prj-5/after/2.webp",
+      "/project-gallery/prj-5/after/3.webp",
+      "/project-gallery/prj-5/after/5.webp",
+      "/project-gallery/prj-5/after/4.webp",
     ],
   },
   {
@@ -26,17 +30,17 @@ const galleryAlbums = [
     category: "Vinyl",
     description: "Removal of old flooring and installation of new vinyl plank flooring.",
     before: [
-      "/src/assets/prj-6/before/1.webp",
-      "/src/assets/prj-6/before/2.webp",
-      "/src/assets/prj-6/before/3.webp",
-      "/src/assets/prj-6/before/4.webp",
-      "/src/assets/prj-6/before/5.webp",
+      "/project-gallery/prj-6/before/1.webp",
+      "/project-gallery/prj-6/before/2.webp",
+      "/project-gallery/prj-6/before/3.webp",
+      "/project-gallery/prj-6/before/4.webp",
+      "/project-gallery/prj-6/before/5.webp",
     ],
     after: [
-      "/src/assets/prj-6/after/1.webp",
-      "/src/assets/prj-6/after/2.webp",
-      "/src/assets/prj-6/after/4.webp",
-      "/src/assets/prj-6/after/5.webp",
+      "/project-gallery/prj-6/after/1.webp",
+      "/project-gallery/prj-6/after/2.webp",
+      "/project-gallery/prj-6/after/4.webp",
+      "/project-gallery/prj-6/after/5.webp",
     ],
   },
   {
@@ -46,14 +50,14 @@ const galleryAlbums = [
     description:
       "Subfloor preparation, adhesive application, and installation of engineered wood flooring.",
     before: [
-      "/src/assets/prj-8/before/1.webp",
-      "/src/assets/prj-8/before/2.webp",
-      "/src/assets/prj-8/before/3.webp",
+      "/project-gallery/prj-8/before/1.webp",
+      "/project-gallery/prj-8/before/2.webp",
+      "/project-gallery//prj-8/before/3.webp",
     ],
     after: [
-      "/src/assets/prj-8/after/1.webp",
-      "/src/assets/prj-8/after/2.webp",
-      "/src/assets/prj-8/after/3.webp",
+      "/project-gallery/prj-8/after/1.webp",
+      "/project-gallery/prj-8/after/2.webp",
+      "/project-gallery/prj-8/after/3.webp",
     ],
   },
   {
@@ -62,8 +66,8 @@ const galleryAlbums = [
     category: "VCT",
     description:
       "Removal of old tiles, adhesive cleanup, subfloor preparation, and installation of new VCT tiles along the sides of the basketball court.",
-    before: ["/src/assets/prj-7/before/1.webp"],
-    after: ["/src/assets/prj-7/after/1.webp"],
+    before: ["/project-gallery//prj-7/before/1.webp"],
+    after: ["/project-gallery/prj-7/after/1.webp"],
   },
   {
     id: 5,
@@ -72,18 +76,18 @@ const galleryAlbums = [
     description:
       "Complete hardwood refinishing including sanding, staining, buffing, and protective finishing.",
     before: [
-      "/src/assets/prj-4/before/1.webp",
-      "/src/assets/prj-4/before/2.webp",
-      "/src/assets/prj-4/before/4.webp",
-      "/src/assets/prj-4/before/5.webp",
-      "/src/assets/prj-4/before/6.webp",
+      "/project-gallery/prj-4/before/1.webp",
+      "/project-gallery/prj-4/before/2.webp",
+      "/project-gallery/prj-4/before/4.webp",
+      "/project-gallery/prj-4/before/5.webp",
+      "/project-gallery/prj-4/before/6.webp",
     ],
     after: [
-      "/src/assets/prj-4/after/1.webp",
-      "/src/assets/prj-4/after/2.webp",
-      "/src/assets/prj-4/after/3.webp",
-      "/src/assets/prj-4/after/6.webp",
-      "/src/assets/prj-4/after/4.webp",
+      "/project-gallery/prj-4/after/1.webp",
+      "/project-gallery/prj-4/after/2.webp",
+      "/project-gallery/prj-4/after/3.webp",
+      "/project-gallery/prj-4/after/6.webp",
+      "/project-gallery/prj-4/after/4.webp",
     ],
   },
   {
@@ -93,13 +97,13 @@ const galleryAlbums = [
     description:
       "Hardwood floor refinishing paired with removal of old carpet and installation of new vinyl flooring.",
     before: [
-      "/src/assets/prj-1/before/1.webp",
-      "/src/assets/prj-1/before/2.webp",
+      "/project-gallery/prj-1/before/1.webp",
+      "/project-gallery/prj-1/before/2.webp",
     ],
     after: [
-      "/src/assets/prj-1/after/1.webp",
-      "/src/assets/prj-1/after/2.webp",
-      "/src/assets/prj-1/after/3.webp",
+      "/project-gallery/prj-1/after/1.webp",
+      "/project-gallery/prj-1/after/2.webp",
+      "/project-gallery/prj-1/after/3.webp",
     ],
   },
   {
@@ -109,98 +113,30 @@ const galleryAlbums = [
     description:
       "Sanding, staining, buffing, and finishing of hardwood flooring.",
     before: [
-      "/src/assets/prj-3/a1.webp",
-      "/src/assets/prj-3/a2.webp",
-      "/src/assets/prj-3/a3.webp",
+      "/project-gallery/prj-3/before/1.webp",
+      "/project-gallery/prj-3/before/2.webp",
+      "/project-gallery/prj-3/before/3.webp",
+      "/project-gallery/prj-3/before/4.webp",
     ],
     after: [
-      "/src/assets/prj-3/a1-2.webp",
-      "/src/assets/prj-3/a2-2.webp",
-      "/src/assets/prj-3/a3-2.webp",
-      "/src/assets/prj-3/a4.webp",
-    ],
-  },
+      "/project-gallery/prj-3/after/1.webp",
+      "/project-gallery/prj-3/after/2.webp",
+      "/project-gallery/prj-3/after/3.webp",
+      "/project-gallery/prj-3/after/4.webp",
+      "/project-gallery/prj-3/after/5.webp",
+      "/project-gallery/prj-3/after/6.webp",
+      "/project-gallery/prj-3/after/7.webp",
+
+    ]
+  }
 ];
 
 const categories = ["All", "Hardwood", "Vinyl", "Engineered", "VCT"];
 
-// --- Lightbox Sub-Component ---
-const Lightbox = ({ isOpen, images, currentIndex, onClose, onNext, onPrev }) => {
-  if (!isOpen || images.length === 0) return null;
 
-  const currentImage = images[currentIndex];
-  const isFirst = currentIndex === 0;
-  const isLast = currentIndex === images.length - 1;
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 backdrop-blur-sm p-4 font-sans"
-      onClick={onClose}
-    >
-      <div
-        className="relative max-w-5xl w-full h-full max-h-[90vh]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-white text-3xl z-10 p-2 opacity-80 hover:opacity-100 transition font-sans"
-          aria-label="Close Lightbox"
-        >
-          &times;
-        </button>
-
-        {/* Image */}
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          className="w-full h-full flex items-center justify-center"
-        >
-          <img
-            src={currentImage.src}
-            alt={`Gallery Image ${currentIndex + 1}`}
-            className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-          />
-        </motion.div>
-
-        {/* Navigation */}
-        <button
-          onClick={onPrev}
-          disabled={isFirst}
-          className={`absolute left-2 top-1/2 -translate-y-1/2 p-1 text-white text-2xl bg-black/20 md:bg-black/40 rounded-md md:rounded-full backdrop-blur-sm transition-opacity font-sans ${
-            isFirst ? "opacity-20 cursor-not-allowed" : "hover:bg-black/60"
-          }`}
-          aria-label="Previous Image"
-        >
-          &larr;
-        </button>
-
-        <button
-          onClick={onNext}
-          disabled={isLast}
-          className={`absolute right-2 top-1/2 -translate-y-1/2 p-1 text-white text-2xl bg-black/20 md:bg-black/40 rounded-md md:rounded-full backdrop-blur-sm transition-opacity font-sans ${
-            isLast ? "opacity-20 cursor-not-allowed" : "hover:bg-black/60"
-          }`}
-          aria-label="Next Image"
-        >
-          &rarr;
-        </button>
-
-        {/* Counter */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-md bg-black/50 px-4 py-1 rounded-full font-sans">
-          {currentIndex + 1} / {images.length}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// --- GallerySection Component ---
 const GallerySection = ({ darkMode }) => {
   const [activeCategory, setActiveCategory] = useState("All");
-
-  // Lightbox State
+  
   const [lightbox, setLightbox] = useState({
     isOpen: false,
     images: [],
@@ -216,45 +152,99 @@ const GallerySection = ({ darkMode }) => {
             : a.category === activeCategory
         );
 
-  const openLightbox = (album, index, section) => {
-    const allImages = [
-      ...(album.before || []).map((src) => ({ src, type: "before" })),
-      ...(album.after || []).map((src) => ({ src, type: "after" })),
-    ];
-    const startIndex = section === "before" ? index : (album.before?.length || 0) + index;
-    setLightbox({ isOpen: true, images: allImages, currentIndex: startIndex });
+  // Function to gather all images from a specific album*
+  const getAlbumImages = useCallback((album) => {
+    const images = [];
+
+    // Before Images
+    album.before?.forEach((src) => {
+      images.push({
+        src: src,
+        highResSrc: src,
+        caption: `Before - ${album.title}`,
+        description: album.description,
+      });
+    });
+
+    // After Images
+    album.after?.forEach((src) => {
+      images.push({
+        src: src,
+        highResSrc: src,
+        caption: `After - ${album.title}`,
+        description: album.description,
+      });
+    });
+
+    return images;
+  }, []);
+
+  // Helper to map an original image path to the generated thumbnail path.
+  // Thumbnails are written as `<same-dir>/thumbs/<basename>.webp` by the generator.
+  const getThumbSrc = (src) => {
+  if (!src) return src;
+  // normalize accidental double slashes
+  const normalized = src.replace(/\/{2,}/g, '/');
+  const dir = normalized.replace(/\/[^/]+$/, '');
+  const base = normalized.replace(/^.*\//, '');
+  const name = base.replace(/\.[^/]+$/, '');
+    return `${dir}/thumbs/${name}.webp`;
   };
 
-  const closeLightbox = () => setLightbox({ isOpen: false, images: [], currentIndex: 0 });
+  // Handler to open the lightbox
+  const openLightbox = useCallback((album, currentSrc) => {
+    const allAlbumImages = getAlbumImages(album);
+    const currentIndex = allAlbumImages.findIndex(img => img.src === currentSrc);
+    
+    if (currentIndex !== -1) {
+      setLightbox({
+        isOpen: true,
+        images: allAlbumImages,
+        currentIndex: currentIndex,
+      });
+    }
+  }, [getAlbumImages]);
 
-  const nextImage = useCallback(() => {
-    setLightbox((prev) => ({
-      ...prev,
-      currentIndex: Math.min(prev.currentIndex + 1, prev.images.length - 1),
-    }));
+  // Handler to close the lightbox
+  const closeLightbox = useCallback(() => {
+    setLightbox(prev => ({ ...prev, isOpen: false }));
   }, []);
 
-  const prevImage = useCallback(() => {
-    setLightbox((prev) => ({
-      ...prev,
-      currentIndex: Math.max(prev.currentIndex - 1, 0),
-    }));
+  // Handler to navigate (direction: 1 for next, -1 for previous)
+  const navigateLightbox = useCallback((direction) => {
+    setLightbox(prev => {
+      let newIndex = prev.currentIndex + direction;
+      
+      if (newIndex < 0) {
+        newIndex = 0;
+      } else if (newIndex >= prev.images.length) {
+        newIndex = prev.images.length - 1;
+      }
+      
+      return { ...prev, currentIndex: newIndex };
+    });
   }, []);
 
-  useEffect(() => {
-    const handleKeydown = (event) => {
-      if (!lightbox.isOpen) return;
-      if (event.key === "Escape") closeLightbox();
-      else if (event.key === "ArrowRight") nextImage();
-      else if (event.key === "ArrowLeft") prevImage();
-    };
-    window.addEventListener("keydown", handleKeydown);
-    return () => window.removeEventListener("keydown", handleKeydown);
-  }, [lightbox.isOpen, nextImage, prevImage]);
+  const prefersReducedMotion = useReducedMotion();
+
+  const gridVariants = prefersReducedMotion
+    ? { hidden: {}, visible: {} }
+    : {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.06, delayChildren: 0.02 } },
+      };
+
+  const tileVariants = prefersReducedMotion
+    ? { hidden: {}, visible: {} }
+    : {
+        hidden: { opacity: 0, y: 8 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.36, ease: 'easeOut' } },
+      };
 
   return (
-    <section className="py-20 transition-colors duration-400">
+  <section id="gallery" className="py-20 transition-colors duration-400">
       <div className="container mx-auto px-6 text-center">
+        {/* ... (Header and Description) ... */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -275,24 +265,31 @@ const GallerySection = ({ darkMode }) => {
         </p>
 
         {/* Category Tabs */}
-        <div className="flex justify-center gap-4 mb-15 flex-wrap">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full font-medium transition ${
-                activeCategory === cat
-                  ? darkMode
-                    ? "bg-white/20 text-white"
-                    : "bg-black/10 text-black"
-                  : darkMode
-                  ? "bg-black/20 text-gray-400 hover:text-white"
-                  : "bg-white/10 text-gray-600 hover:text-black"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        <div className="w-full mb-15">
+            {/*
+              1. Added md:justify-center to center only on larger screens.
+              2. Added pl-6 for left padding on mobile (px-6 is container padding).
+            */}
+            <div className="flex overflow-x-auto whitespace-nowrap gap-4 pb-2 pl-6 md:justify-center md:p-0">
+                {categories.map((cat) => (
+                    <button
+                        key={cat}
+                        onClick={() => setActiveCategory(cat)}
+                        // Prevent buttons from shrinking on mobile
+                        className={`px-4 py-2 rounded-full font-medium transition shrink-0 ${ 
+                            activeCategory === cat
+                            ? darkMode
+                                ? "bg-white/20 text-white"
+                                : "bg-black/10 text-black"
+                            : darkMode
+                            ? "bg-black/20 text-gray-400 hover:text-white"
+                            : "bg-white/10 text-gray-600 hover:text-black"
+                        }`}
+                    >
+                        {cat}
+                    </button>
+                ))}
+            </div>
         </div>
 
         {/* Albums */}
@@ -300,7 +297,11 @@ const GallerySection = ({ darkMode }) => {
           {filteredAlbums.map((album) => (
             <div key={album.id} className="text-left max-w-6xl mx-auto w-full">
               <div className="mb-6">
-                <h3 className={`text-2xl font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-900"}`}>
+                <h3
+                  className={`text-2xl font-semibold mb-2 ${
+                    darkMode ? "text-white" : "text-gray-900"
+                  }`}
+                >
                   {album.title}
                 </h3>
                 <p className={`max-w-3xl ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
@@ -308,48 +309,82 @@ const GallerySection = ({ darkMode }) => {
                 </p>
               </div>
 
-              {/* BEFORE section */}
+              {/* BEFORE section: Use onClick to open lightbox, passing the album object */}
               {album.before?.length > 0 && (
                 <div className="mb-8">
-                  <h4 className={`text-base font-semibold mb-2 uppercase tracking-wide ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                  <h4
+                    className={`text-base font-semibold mb-2 uppercase tracking-wide ${
+                      darkMode ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
                     Before
                   </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                  <motion.div
+                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"
+                    variants={gridVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.12 }}
+                  >
                     {album.before.map((src, i) => (
-                      <div
+                      <motion.div
                         key={i}
-                        className="relative w-full aspect-[3/4] overflow-hidden rounded-xl cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-                        onClick={() => openLightbox(album, i, "before")}
+                        variants={tileVariants}
+                        className="relative w-full aspect-3/4 overflow-hidden rounded-xl cursor-pointer hover:opacity-80 transition"
+                        onClick={() => openLightbox(album, src)}
                       >
                         <img
-                          src={src}
+                          src={getThumbSrc(src)}
                           alt={`Before ${i + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-300"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = src;
+                          }}
                         />
-                      </div>
+                        <span className="absolute inset-0 bg-black/10 flex items-center justify-center text-white opacity-0 hover:opacity-100 transition text-4xl font-light pointer-events-none">
+                            &#x2b;
+                        </span>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 </div>
               )}
 
-              {/* AFTER section */}
+              {/* AFTER section: Use onClick to open lightbox, passing the album object */}
               {album.after?.length > 0 && (
                 <div>
-                  <h4 className={`text-base font-semibold mb-2 uppercase tracking-wide ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                  <h4
+                    className={`text-base font-semibold mb-2 uppercase tracking-wide ${
+                      darkMode ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
                     After
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                     {album.after.map((src, i) => (
                       <div
                         key={i}
-                        className="relative w-full aspect-[3/4] overflow-hidden rounded-xl cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-                        onClick={() => openLightbox(album, i, "after")}
+                        className="relative w-full aspect-3/4 overflow-hidden rounded-xl cursor-pointer hover:opacity-80 transition"
+                        onClick={() => openLightbox(album, src)} // Pass album and image source
                       >
                         <img
-                          src={src}
+                          src={getThumbSrc(src)}
                           alt={`After ${i + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-300"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            // If thumbnail is missing or fails, fall back to full image
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = src;
+                          }}
                         />
+                          <span className="absolute inset-0 bg-black/10 flex items-center justify-center text-white opacity-0 hover:opacity-100 transition text-4xl font-light pointer-events-none">
+                            &#x2b;
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -359,16 +394,17 @@ const GallerySection = ({ darkMode }) => {
           ))}
         </div>
       </div>
-
-      {/* Lightbox */}
+      
+      {/* Render the custom Lightbox */}
       <Lightbox
         isOpen={lightbox.isOpen}
         images={lightbox.images}
-        currentIndex={lightbox.currentIndex}
+        currentImageIndex={lightbox.currentIndex}
         onClose={closeLightbox}
-        onNext={nextImage}
-        onPrev={prevImage}
+        onNavigate={navigateLightbox}
+        darkMode={darkMode}
       />
+      
     </section>
   );
 };

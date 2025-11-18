@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+// reference to avoid false-positive 'unused' reports in some ESLint configs
+void motion;
 
 import {
   PhoneIcon,
@@ -23,7 +25,9 @@ const ContactSection = ({ darkMode }) => {
       });
       setSubmitted(true);
       form.reset();
-    } catch (err) {
+    } catch (error) {
+      // Log the error for debugging and show a user-friendly message
+      console.error(error);
       alert("Error sending message. Please try again.");
     }
   };
@@ -209,10 +213,10 @@ const ContactSection = ({ darkMode }) => {
           <p className="text-sm opacity-70
           ">Prefer to reach out directly?</p>
 
-          <p className="text-lg font-medium flex items-center justify-center gap-2">
+          <p className="text-lg font-medium flex items-center justify-center gap-3">
             <PhoneIcon
               className={`h-5 w-5 ${
-                darkMode ? "text-gray-300" : "text-gray-600"
+                darkMode ? "text-[#caced4]" : "text-gray-600"
               }`}
             />
             <a href="tel:+19088848213" className="hover:underline">
@@ -220,19 +224,19 @@ const ContactSection = ({ darkMode }) => {
             </a>
           </p>
 
-          <p className="text-lg font-medium flex items-center justify-center gap-2">
+          <p className="text-lg font-medium flex items-center justify-center gap-3">
             <ChatBubbleBottomCenterTextIcon
               className={`h-5 w-5 ${
-                darkMode ? "text-gray-300" : "text-gray-600"
+                darkMode ? "text-[#caced4]" : "text-gray-600"
           }`}
             />
             Text or call for a quick response.
           </p>
 
-          <p className="text-lg font-medium flex items-center justify-center gap-2">
+          <p className="text-lg font-medium flex items-center justify-center gap-3">
             <EnvelopeIcon
               className={`h-5 w-5 ${
-                darkMode ? "text-gray-300" : "text-gray-600"
+                darkMode ? "text-[#caced4]" : "text-gray-600"
               }`}
             />
             <a

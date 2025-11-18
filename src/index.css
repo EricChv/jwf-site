@@ -7,3 +7,17 @@
   font-family: "Poppins", sans-serif;
   color-scheme: light;
 }
+
+/* Smooth in-page scrolling for anchor links. Respects reduced-motion preference. */
+html {
+  scroll-behavior: smooth;
+  /* Account for fixed header so anchored sections are not hidden behind it. Adjust if needed. */
+  scroll-padding-top: 80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+

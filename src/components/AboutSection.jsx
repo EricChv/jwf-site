@@ -25,9 +25,7 @@ const processSteps = [
 
 const AboutSection = ({ darkMode }) => {
   return (
-    <section
-    className={`py-20 backdrop-blur-xl transition-colors duration-400`}
-    >
+  <section id="about" className={`py-20 backdrop-blur-xl transition-colors duration-400`}>
       <div className="container mx-auto px-6 lg:flex lg:items-start lg:gap-12">
         {/* Left Column: About + Process */}
         <div className="lg:flex-1 flex flex-col justify-center gap-1">

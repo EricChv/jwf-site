@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+// reference to avoid false-positive 'unused' reports in some ESLint configs
+void motion;
 
 
 const HeroSection = ({ darkMode }) => {
@@ -18,7 +20,9 @@ const HeroSection = ({ darkMode }) => {
       });
       setSubmitted(true);
       form.reset();
-    } catch (err) {
+    } catch (error) {
+      // Log error for debugging and inform user
+      console.error(error);
       alert("Error sending message. Please try again.");
     }
   };
