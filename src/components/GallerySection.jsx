@@ -122,8 +122,8 @@ const galleryAlbums = [
       "/project-gallery/prj-3/after/1.webp",
       "/project-gallery/prj-3/after/2.webp",
       "/project-gallery/prj-3/after/3.webp",
-      "/project-gallery/prj-3/after/4.webp",
       "/project-gallery/prj-3/after/5.webp",
+      "/project-gallery/prj-3/after/4.webp",
       "/project-gallery/prj-3/after/6.webp",
       "/project-gallery/prj-3/after/7.webp",
 

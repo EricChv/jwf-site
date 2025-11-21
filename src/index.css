@@ -12,7 +12,7 @@
 html {
   scroll-behavior: smooth;
   /* Account for fixed header so anchored sections are not hidden behind it. Adjust if needed. */
-  scroll-padding-top: 80px;
+  scroll-padding-top: 68px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -21,3 +21,9 @@ html {
   }
 }
 
+/* Mobile override (example: screens up to 600px wide) */
+@media (max-width: 600px) {
+  html {
+    scroll-padding-top: 1px; /* whatever value you want for mobile */
+  }
+}

@@ -40,50 +40,50 @@ const App = () => {
       <AboutSection darkMode={darkMode} />
       
       {/* --- Animated Spacer Bar --- */}
-      <div className="flex justify-center py-20">
+      {/* <div className="flex justify-center py-20">
         <motion.div
-          className={`w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full transition-colors duration-300 ${
+          className={`w-[330px] sm:w-[330px] md:w-[2500px] h-1 rounded-full transition-colors duration-300 ${
             darkMode ? "bg-white/10" : "bg-black/10"
           }`}
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
           style={{ transformOrigin: "center" }}
           viewport={{ once: true }}
         />
-      </div>
+      </div> */}
 
       <ServicesSection darkMode={darkMode} />
 
       {/* --- Animated Spacer Bar --- */}
-      <div className="flex justify-center py-10">
+      {/* <div className="flex justify-center py-10">
         <motion.div
           className={`w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full transition-colors duration-300 ${
             darkMode ? "bg-white/10" : "bg-black/10"
           }`}
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
           style={{ transformOrigin: "center" }}
           viewport={{ once: true }}
         />
-      </div>
+      </div> */}
 
       <GallerySection darkMode={darkMode} />
 
       {/* --- Animated Spacer Bar --- */}
-      <div className="flex justify-center py-10">
+      {/* <div className="flex justify-center py-10">
         <motion.div
           className={`w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full transition-colors duration-300 ${
-            darkMode ? "bg-black/20" : "bg-black/10"
+            darkMode ? "bg-white/10" : "bg-black/10"
           }`}
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
           style={{ transformOrigin: "center" }}
           viewport={{ once: true }}
         />
-      </div>
+      </div> */}
       
       <ContactSection darkMode={darkMode} />
       <Footer darkMode={darkMode} />

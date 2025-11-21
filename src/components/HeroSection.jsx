@@ -1,8 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-// reference to avoid false-positive 'unused' reports in some ESLint configs
-void motion;
-
 
 const HeroSection = ({ darkMode }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -44,7 +41,7 @@ const HeroSection = ({ darkMode }) => {
         />
 
       {/* Content wrapper */}
-      <div className="relative z-10 container mx-auto px-6 py-20 grid lg:grid-cols-2 gap-8 items-center">
+      <div className="relative z-10 container mx-auto px-6 py-20 pb-29 grid lg:grid-cols-2 gap-8 items-center">
         {/* --- Text Side --- */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
