@@ -1,7 +1,5 @@
 import { useState, useCallback } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-// ensure `motion` is referenced so linters that don't detect JSX usage treat it as used
-void motion;
 import Lightbox from "./Lightbox";
 
 

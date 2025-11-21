@@ -1,63 +1,59 @@
-import React from "react";
 import { motion } from "framer-motion";
-// ensure motion is referenced so linters that don't detect JSX usage treat it as used
-void motion;
-
 
 const services = [
   {
     title: "Hardwood Installation",
     description:
       "We remove old flooring and install high-quality hardwood that creates beautiful, natural floors for your home. From start to finish, we handle the prep, installation, and finishing to create floors that last for years.",
-    image: "/src/assets/services/service-hardwood.webp",
+    image: "/services/service-hardwood.webp",
   },
   {
   title: "Engineered Wood Floor Installation",
   description:
     "Engineered wood flooring features a real hardwood surface layer over a stable plywood or composite base. It provides the beauty of solid wood with added resistance to humidity and temperature changes, making it ideal for basements, apartments, and areas with varying moisture levels.",
-  image: "/src/assets/services/service-engineered.webp",
+  image: "/services/service-engineered.webp",
   },
   {
     title: "Laminate Floor Installation",
     description:
       "Laminate flooring is made of high-density fiberboard with a protective top layer. It offers a similar look to hardwood at a low-cost, durable, and water-resistant (not waterproof), making it ideal for living rooms, bedrooms, and other low-moisture areas.",
-    image: "/src/assets/services/service-laminate.webp",
+    image: "/services/service-laminate.webp",
   },
   {
     title: "Luxury Vinyl Plank (LVP) Installation",
     description:
       "LVP is a synthetic vinyl composite that is 100% waterproof. Perfect for kitchens, bathrooms, basements, or commercial spaces. It combines durability, comfort , and design flexibility.",
-    image: "/src/assets/services/service-lvp.webp",
+    image: "/services/service-lvp.webp",
   },
   {
     title: "Vinyl Composite Tile (VCT) Installation",
     description:
       "A resilient, cost-effective flooring solution designed for commercial spaces such as schools, hospitals, and retail environments. VCT delivers reliable performance and can maintain its sheen through periodic waxing and polishing.",
-    image: "/src/assets/services/service-vct.jpeg",
+    image: "/services/service-vct.jpeg",
   },
   {
     title: "Refinishing",
     description:
       "A comprehensive restoration service that sands floors down to bare wood, removes imperfections, and applies fresh stain and finish. Ideal for worn or damaged surfaces that need a complete transformation.",
-    image: "/src/assets/services/service-refinishing.webp",
+    image: "/services/service-refinishing.webp",
   },
   {
     title: "Buff & Recoat",
     description:
       "A light maintenance process that refreshes existing floors without full sanding. The surface is gently screened and finished with a new protective coat, restoring natural luster and extending the life of the floor.",
-    image: "/src/assets/services/service-recoat.webp",
+    image: "/services/service-recoat.webp",
   },
   {
     title: "Floor Repairs",
     description:
       "Targeted repair services for scratches, dents, or damaged boards. Each repair blends with surrounding flooring, restoring both the integrity and appearance of the surface.",
-    image: "/src/assets/services/service-repair.webp",
+    image: "/services/service-repair.webp",
   },
   {
     title: "Base and Shoe Molding Installation",
     description:
       "Custom-fit moldings that deliver the perfect finishing touch. Precisely installed base and shoe trim create a clean transition between walls and flooring.",
-    image: "/src/assets/services/service-molding.webp",
+    image: "/services/service-molding.webp",
   },
 ];
 

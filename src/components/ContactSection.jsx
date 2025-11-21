@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-// reference to avoid false-positive 'unused' reports in some ESLint configs
-void motion;
 
 import {
   PhoneIcon,

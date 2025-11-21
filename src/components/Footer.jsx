@@ -1,8 +1,6 @@
 import { FaInstagram, FaFacebookF, FaTiktok, FaGoogle } from "react-icons/fa";
 import { PhoneIcon, ChatBubbleBottomCenterTextIcon, EnvelopeIcon } from '@heroicons/react/24/solid'
 
-
-
 const Footer = ({ darkMode }) => {
   const year = new Date().getFullYear();
 

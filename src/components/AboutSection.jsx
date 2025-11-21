@@ -1,4 +1,3 @@
-import React from "react";
 import aboutImg from "../assets/about-img1.webp";
 import { Ruler, Hammer, CheckCircle } from "lucide-react";
 
