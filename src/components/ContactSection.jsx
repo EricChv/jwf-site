@@ -10,26 +10,6 @@ import {
 const ContactSection = ({ darkMode }) => {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-
-    try {
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(data).toString(),
-      });
-      setSubmitted(true);
-      form.reset();
-    } catch (error) {
-      // Log the error for debugging and show a user-friendly message
-      console.error(error);
-      alert("Error sending message. Please try again.");
-    }
-  };
-
   return (
     <section
       id="contact"
@@ -63,9 +43,7 @@ const ContactSection = ({ darkMode }) => {
         <div className="flex justify-center">
           <div
             className={`w-full max-w-2xl rounded-2xl shadow-2xl p-8 transition-all duration-500 ${
-              darkMode
-                ? "bg-[#1f1f1f] "
-                : "bg-gray-50 "
+              darkMode ? "bg-[#1f1f1f]" : "bg-gray-50"
             }`}
           >
             {submitted ? (
@@ -90,10 +68,18 @@ const ContactSection = ({ darkMode }) => {
                 name="contact"
                 method="POST"
                 data-netlify="true"
-                onSubmit={handleSubmit}
+                data-netlify-honeypot="bot-field"
+                onSubmit={() => setSubmitted(true)}
                 className="space-y-6"
               >
                 <input type="hidden" name="form-name" value="contact" />
+
+                {/* Honeypot */}
+                <p className="hidden">
+                  <label>
+                    Don’t fill this out if you're human: <input name="bot-field" />
+                  </label>
+                </p>
 
                 {/* Full Name */}
                 <div>
@@ -194,13 +180,6 @@ const ContactSection = ({ darkMode }) => {
                 >
                   Send
                 </button>
-
-                {/* Honeypot field */}
-                <p className="hidden">
-                  <label>
-                    Don’t fill this out if you’re human: <input name="bot-field" />
-                  </label>
-                </p>
               </form>
             )}
           </div>
@@ -208,41 +187,21 @@ const ContactSection = ({ darkMode }) => {
 
         {/* Contact Info */}
         <div className={`mt-20 text-center space-y-5 ${darkMode ? "text-white" : "text-gray-600"}`}>
-          <p className="text-sm opacity-70
-          ">Prefer to reach out directly?</p>
+          <p className="text-sm opacity-70">Prefer to reach out directly?</p>
 
           <p className="text-lg font-medium flex items-center justify-center gap-3">
-            <PhoneIcon
-              className={`h-5 w-5 ${
-                darkMode ? "text-[#caced4]" : "text-gray-600"
-              }`}
-            />
-            <a href="tel:+19088848213" className="hover:underline">
-              +1 (908) 884-8213
-            </a>
+            <PhoneIcon className={`h-5 w-5 ${darkMode ? "text-[#caced4]" : "text-gray-600"}`} />
+            <a href="tel:+19088848213" className="hover:underline">+1 (908) 884-8213</a>
           </p>
 
           <p className="text-lg font-medium flex items-center justify-center gap-3">
-            <ChatBubbleBottomCenterTextIcon
-              className={`h-5 w-5 ${
-                darkMode ? "text-[#caced4]" : "text-gray-600"
-          }`}
-            />
+            <ChatBubbleBottomCenterTextIcon className={`h-5 w-5 ${darkMode ? "text-[#caced4]" : "text-gray-600"}`} />
             Text or call for a quick response.
           </p>
 
           <p className="text-lg font-medium flex items-center justify-center gap-3">
-            <EnvelopeIcon
-              className={`h-5 w-5 ${
-                darkMode ? "text-[#caced4]" : "text-gray-600"
-              }`}
-            />
-            <a
-              href="mailto:jerseywoodflooring@gmail.com"
-              className="hover:underline"
-            >
-              jerseywoodflooring@gmail.com
-            </a>
+            <EnvelopeIcon className={`h-5 w-5 ${darkMode ? "text-[#caced4]" : "text-gray-600"}`} />
+            <a href="mailto:jerseywoodflooring@gmail.com" className="hover:underline">jerseywoodflooring@gmail.com</a>
           </p>
         </div>
       </div>

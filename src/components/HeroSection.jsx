@@ -4,41 +4,21 @@ import { motion } from "framer-motion";
 const HeroSection = ({ darkMode }) => {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-
-    try {
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(data).toString(),
-      });
-      setSubmitted(true);
-      form.reset();
-    } catch (error) {
-      // Log error for debugging and inform user
-      console.error(error);
-      alert("Error sending message. Please try again.");
-    }
-  };
-
   return (
     <section
-        id="home"
-        className={`relative min-h-screen bg-cover flex items-center text-center
-          ${darkMode ? "text-white" : "text-black"}
-          bg-[url('/src/assets/hero-floor2.webp')] 
-          md:bg-[url('/src/assets/hero-floor2.webp')]
-        `}
-      >
-        {/* Overlay */}
-        <div
-          className={`absolute inset-0 ${
-            darkMode ? "bg-black/70" : "bg-black/30"
-          }`}
-        />
+      id="home"
+      className={`relative min-h-screen bg-cover flex items-center text-center
+        ${darkMode ? "text-white" : "text-black"}
+        bg-[url('/src/assets/hero-floor2.webp')] 
+        md:bg-[url('/src/assets/hero-floor2.webp')]
+      `}
+    >
+      {/* Overlay */}
+      <div
+        className={`absolute inset-0 ${
+          darkMode ? "bg-black/70" : "bg-black/30"
+        }`}
+      />
 
       {/* Content wrapper */}
       <div className="relative z-10 container mx-auto px-6 py-20 pb-29 grid lg:grid-cols-2 gap-8 items-center">
@@ -58,38 +38,45 @@ const HeroSection = ({ darkMode }) => {
           </p>
         </motion.div>
 
-        {/* Form Side */}
-        <div className="mt-10 lg:mt-0 flex justify-center lg:justify-end">
+        {/* --- Form Side --- */}
+        <div className="mt-10 lg:mt-0 flex justify-center lg:justify-end w-full">
           {submitted ? (
             <div
               className={`backdrop-blur-xl ${
-                darkMode
-                  ? "bg-black/30 text-white"
-                  : "bg-white/20 text-black"
+                darkMode ? "bg-black/30 text-white" : "bg-white/20 text-black"
               } p-8 rounded-2xl shadow-2xl w-full max-w-md text-center`}
             >
               <h2 className="text-2xl font-semibold mb-2">Thank you!</h2>
               <p className={darkMode ? "text-white/80" : "text-gray-800"}>
-                Your message has been sent successfully.<br />
+                Your message has been sent successfully.
+                <br />
                 We'll get back to you soon.
               </p>
             </div>
           ) : (
             <div
               className={`backdrop-blur-xl ${
-                darkMode
-                  ? "bg-black/30  text-white"
-                  : "bg-white/20 text-black"
+                darkMode ? "bg-black/30 text-white" : "bg-white/20 text-black"
               } p-8 rounded-2xl shadow-2xl w-full max-w-md text-left`}
             >
+              {/* Netlify form */}
               <form
                 name="contact"
                 method="POST"
                 data-netlify="true"
-                onSubmit={handleSubmit}
+                data-netlify-honeypot="bot-field"
+                onSubmit={() => setSubmitted(true)}
+                action="/"
                 className="space-y-5"
               >
                 <input type="hidden" name="form-name" value="contact" />
+
+                {/* Honeypot */}
+                <p className="hidden">
+                  <label>
+                    Don’t fill this out if you're human: <input name="bot-field" />
+                  </label>
+                </p>
 
                 {/* Name */}
                 <div>
@@ -179,7 +166,7 @@ const HeroSection = ({ darkMode }) => {
                   />
                 </div>
 
-                {/* Button */}
+                {/* Submit Button */}
                 <button
                   type="submit"
                   className={`w-full py-3 rounded-lg shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
@@ -190,13 +177,6 @@ const HeroSection = ({ darkMode }) => {
                 >
                   Send
                 </button>
-
-                {/* Honeypot */}
-                <p className="hidden">
-                  <label>
-                    Don’t fill this out if you're human: <input name="bot-field" />
-                  </label>
-                </p>
               </form>
             </div>
           )}
