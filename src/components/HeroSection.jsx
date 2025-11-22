@@ -4,25 +4,38 @@ import { motion } from "framer-motion";
 const HeroSection = ({ darkMode }) => {
   const [submitted, setSubmitted] = useState(false);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+      });
+      setSubmitted(true);
+      e.target.reset();
+    } catch (err) {
+      console.error(err);
+      alert("Error sending message. Please try again.");
+    }
+  };
+
   return (
     <section
       id="home"
       className={`relative min-h-screen bg-cover flex items-center text-center
         ${darkMode ? "text-white" : "text-black"}
-        bg-[url('/src/assets/hero-floor2.webp')] 
-        md:bg-[url('/src/assets/hero-floor2.webp')]
+        bg-[url('/src/assets/hero-floor2.webp')]
       `}
     >
       {/* Overlay */}
-      <div
-        className={`absolute inset-0 ${
-          darkMode ? "bg-black/70" : "bg-black/30"
-        }`}
-      />
+      <div className={`absolute inset-0 ${darkMode ? "bg-black/70" : "bg-black/30"}`} />
 
-      {/* Content wrapper */}
+      {/* Content */}
       <div className="relative z-10 container mx-auto px-6 py-20 pb-29 grid lg:grid-cols-2 gap-8 items-center">
-        {/* --- Text Side --- */}
+        {/* Text */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -38,40 +51,26 @@ const HeroSection = ({ darkMode }) => {
           </p>
         </motion.div>
 
-        {/* --- Form Side --- */}
+        {/* Form */}
         <div className="mt-10 lg:mt-0 flex justify-center lg:justify-end w-full">
           {submitted ? (
-            <div
-              className={`backdrop-blur-xl ${
-                darkMode ? "bg-black/30 text-white" : "bg-white/20 text-black"
-              } p-8 rounded-2xl shadow-2xl w-full max-w-md text-center`}
-            >
+            <div className={`backdrop-blur-xl ${darkMode ? "bg-black/30 text-white" : "bg-white/20 text-black"} p-8 rounded-2xl shadow-2xl w-full max-w-md text-center`}>
               <h2 className="text-2xl font-semibold mb-2">Thank you!</h2>
               <p className={darkMode ? "text-white/80" : "text-gray-800"}>
-                Your message has been sent successfully.
-                <br />
-                We'll get back to you soon.
+                Your message has been sent successfully. We'll get back to you soon.
               </p>
             </div>
           ) : (
-            <div
-              className={`backdrop-blur-xl ${
-                darkMode ? "bg-black/30 text-white" : "bg-white/20 text-black"
-              } p-8 rounded-2xl shadow-2xl w-full max-w-md text-left`}
-            >
-              {/* Netlify form */}
+            <div className={`backdrop-blur-xl ${darkMode ? "bg-black/30 text-white" : "bg-white/20 text-black"} p-8 rounded-2xl shadow-2xl w-full max-w-md text-left`}>
               <form
                 name="contact"
                 method="POST"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
-                onSubmit={() => setSubmitted(true)}
-                action="/"
+                onSubmit={handleSubmit}
                 className="space-y-5"
               >
                 <input type="hidden" name="form-name" value="contact" />
-
-                {/* Honeypot */}
                 <p className="hidden">
                   <label>
                     Don’t fill this out if you're human: <input name="bot-field" />
@@ -80,107 +79,43 @@ const HeroSection = ({ darkMode }) => {
 
                 {/* Name */}
                 <div>
-                  <label
-                    className={`block text-sm font-medium mb-1 ${
-                      darkMode ? "text-white/90" : "text-gray-800"
-                    }`}
-                  >
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="John Doe"
-                    required
-                    className={`w-full rounded-lg px-4 py-3 outline-none transition ${
-                      darkMode
-                        ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20"
-                        : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                    }`}
-                  />
+                  <label className={`block text-sm font-medium mb-1 ${darkMode ? "text-white/90" : "text-gray-800"}`}>Full Name</label>
+                  <input type="text" name="name" placeholder="John Doe" required className={`w-full rounded-lg px-4 py-3 outline-none transition ${darkMode ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20" : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"}`} />
                 </div>
 
                 {/* Phone */}
                 <div>
-                  <label
-                    className={`block text-sm font-medium mb-1 ${
-                      darkMode ? "text-white/90" : "text-gray-800"
-                    }`}
-                  >
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="(999) 123-4567"
-                    required
-                    className={`w-full rounded-lg px-4 py-3 outline-none transition ${
-                      darkMode
-                        ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20"
-                        : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                    }`}
-                  />
+                  <label className={`block text-sm font-medium mb-1 ${darkMode ? "text-white/90" : "text-gray-800"}`}>Phone Number</label>
+                  <input type="tel" name="phone" placeholder="(999) 123-4567" required className={`w-full rounded-lg px-4 py-3 outline-none transition ${darkMode ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20" : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"}`} />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label
-                    className={`block text-sm font-medium mb-1 ${
-                      darkMode ? "text-white/90" : "text-gray-800"
-                    }`}
-                  >
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="you@email.com"
-                    required
-                    className={`w-full rounded-lg px-4 py-3 outline-none transition ${
-                      darkMode
-                        ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20"
-                        : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                    }`}
-                  />
+                  <label className={`block text-sm font-medium mb-1 ${darkMode ? "text-white/90" : "text-gray-800"}`}>Email Address</label>
+                  <input type="email" name="email" placeholder="you@email.com" required className={`w-full rounded-lg px-4 py-3 outline-none transition ${darkMode ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20" : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"}`} />
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label
-                    className={`block text-sm font-medium mb-1 ${
-                      darkMode ? "text-white/90" : "text-gray-800"
-                    }`}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    rows="4"
-                    placeholder="Tell us about your project..."
-                    required
-                    className={`w-full rounded-lg px-4 py-3 outline-none transition ${
-                      darkMode
-                        ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20"
-                        : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"
-                    }`}
-                  />
+                  <label className={`block text-sm font-medium mb-1 ${darkMode ? "text-white/90" : "text-gray-800"}`}>Message</label>
+                  <textarea name="message" rows="4" placeholder="Tell us about your project..." required className={`w-full rounded-lg px-4 py-3 outline-none transition ${darkMode ? "bg-black/20 text-white placeholder-white/40 focus:border-white/40 focus:ring-2 focus:ring-white/20" : "bg-white/10 text-black placeholder-black/30 focus:border-white/10 focus:ring-2 focus:ring-white/30"}`} />
                 </div>
 
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className={`w-full py-3 rounded-lg shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
-                    darkMode
-                      ? "bg-black/10 hover:bg-black/30 text-white"
-                      : "bg-white/10 hover:bg-white/1 text-gray-800"
-                  }`}
-                >
-                  Send
-                </button>
+                <button type="submit" className={`w-full py-3 rounded-lg shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${darkMode ? "bg-black/10 hover:bg-black/30 text-white" : "bg-white/10 hover:bg-white/1 text-gray-800"}`}>Send</button>
               </form>
             </div>
           )}
         </div>
+      </div>
+
+      {/* Hidden static form for Netlify detection */}
+      <div style={{ display: "none" }}>
+        <form name="contact" netlify netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <input type="text" name="name" />
+          <input type="email" name="email" />
+          <textarea name="message"></textarea>
+        </form>
       </div>
     </section>
   );
