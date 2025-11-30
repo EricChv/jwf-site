@@ -5,15 +5,16 @@
 /* Optional: global CSS */
 :root {
   font-family: "Poppins", sans-serif;
-  color-scheme: light;
+  color-scheme: light dark;
 }
 
 /* Smooth in-page scrolling for anchor links. Respects reduced-motion preference. */
 html {
   scroll-behavior: smooth;
-  /* Account for fixed header so anchored sections are not hidden behind it. Adjust if needed. */
   scroll-padding-top: 68px;
 }
+
+
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -26,4 +27,5 @@ html {
   html {
     scroll-padding-top: 1px; /* whatever value you want for mobile */
   }
+  
 }

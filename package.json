@@ -14,7 +14,7 @@
     "convert:heic": "bash scripts/convert-heic-to-webp.sh"
   },
   "dependencies": {
-    "@fancyapps/ui": "^6.1.5",
+    "@fancyapps/ui": "^6.1.6",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.16",
     "@tailwindplus/elements": "^1.0.18",
@@ -25,7 +25,8 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
-    "react-lazy-load-image-component": "^1.6.3"
+    "react-lazy-load-image-component": "^1.6.3",
+    "yet-another-react-lightbox": "^3.25.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

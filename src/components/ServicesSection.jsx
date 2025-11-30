@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion"; // Import useReducedMotion
 
 const services = [
   {
@@ -58,11 +58,45 @@ const services = [
 ];
 
 const ServicesSection = ({ darkMode }) => {
+  const prefersReducedMotion = useReducedMotion();
+
+  // 1. Grid container variant for stagger effect (Copied from GallerySection)
+  const gridVariants = prefersReducedMotion
+    ? { hidden: {}, visible: {} }
+    : {
+        hidden: {},
+        visible: { transition: { 
+          staggerChildren: 0.1,  
+          delayChildren: 0.05
+        } },
+      };
+
+  // 2. Tile variant for pure fade-in (y: 0 removes vertical movement) (Copied from GallerySection)
+  const tileVariants = prefersReducedMotion
+    ? { hidden: {}, visible: {} }
+    : {
+        hidden: { 
+          opacity: 0, 
+          y: 0 
+        },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { 
+            duration: 0.5, 
+            ease: "easeOut",
+          },
+        },
+      };
+
   return (
     
     <section
     id="services"
-    className={`py-20 backdrop-blur-xl transition-colors  duration-400 `}
+    // Using simple light/dark mode background colors for the section itself
+    className={`py-20 backdrop-blur-xl transition-colors duration-400 ${
+      darkMode ? "bg-[#121212]" : "bg-white"
+    }`}
       >
         <div className="container mx-auto px-6 text-center">
           <motion.h2
@@ -78,54 +112,65 @@ const ServicesSection = ({ darkMode }) => {
 
         <p
           className={`max-w-2xl mx-auto mb-2 ${
-            darkMode ? "text-gray-300" : "text-gray-600" // original light color
+            darkMode ? "text-gray-300" : "text-gray-600"
           }`}
         >
-          We provide expert flooring installation, refinishing, and restoration
-          services for both residential and commercial spaces.
+          We provide professional flooring installation, refinishing, and restoration services for both residential and commercial spaces.
         </p>
         <p
           className={`text-sm italic mb-12 ${
-            darkMode ? "text-gray-400" : "text-gray-500" // original light color
+            darkMode ? "text-gray-400" : "text-gray-500"
           }`}
         >
           *All sanding and refinishing services include a dustless system.
         </p>
 
         {/* --- Services Grid --- */}
-        <div className="grid md:grid-cols-3 gap-10 justify-items-center ">
+        <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center"
+            // 3. Apply Staggered Animation to the Grid Container
+            variants={gridVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+        >
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className={`group w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl  backdrop-blur-md ${
-                darkMode
-                  ? "bg-[#1f1f1f] border-gray-700/40"
-                  : "bg-gray-50 border-white/20"
-              }`}
+              // 4. Apply Tile Animation to each Card
+              variants={tileVariants} 
+              viewport={{ once: true }} 
+              className={`group w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl 
+                transition-all duration-300 transform hover:scale-[1.02] 
+                ${
+                  darkMode
+                    // Dark Card Style: Slightly off-black with subtle inner border and strong shadow
+                    ? "bg-[#1f1f1f] border border-gray-700/40 shadow-xl shadow-black/60"
+                    // Light Card Style: Off-white with strong shadow
+                    : "bg-gray-50 border border-gray-200 shadow-xl shadow-gray-400/30"
+                }
+              `}
             >
               <div className="overflow-hidden">
                 <img
                   src={service.image}
                   alt={service.title}
                   loading="lazy"
-                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-103"
+                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                  onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x256/555/FFF?text=Image+Unavailable'}}
                 />
               </div>
               <div className="p-6 text-left">
                 <h3
                   className={`text-xl font-semibold mb-2 ${
-                    darkMode ? "text-white" : "text-gray-900" // original light mode
+                    darkMode ? "text-white" : "text-gray-900"
                   }`}
                 >
                   {service.title}
                 </h3>
                 <p
                   className={`leading-relaxed ${
-                    darkMode ? "text-gray-300" : "text-gray-700" // original light mode
+                    darkMode ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
                   {service.description}
@@ -133,7 +178,7 @@ const ServicesSection = ({ darkMode }) => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -2,11 +2,10 @@ import { useState } from "react";
 import logoLight from "../assets/logoLight.webp";
 
 import { navItems } from "../constants";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { FaInstagram, FaFacebookF, FaTiktok, FaGoogle } from "react-icons/fa";
 
-
-const Navbar = ({ darkMode, toggleDarkMode }) => {
+const Navbar = ({ darkMode }) => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const toggleNavbar = () => setMobileDrawerOpen(!mobileDrawerOpen);
 
@@ -21,7 +20,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
         }`}
       >
         <nav className="container mx-auto flex justify-between items-center px-1">
-          {/* --- Left: Logo (clicking goes to Home) --- */}
+          {/* --- Left: Logo --- */}
           <div className="flex items-center gap-2">
             <a href="#home" className="flex items-center gap-2">
               <img
@@ -35,10 +34,10 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             </a>
           </div>
 
-          {/* --- Right: Nav Items + Dark Mode Toggle --- */}
+          {/* --- Right: Nav Items + Mobile Hamburger --- */}
           <div className="flex items-center gap-4">
             {/* Nav Items for large screens */}
-            <ul className="hidden lg:flex gap-6 text-sm font-medium items-center">
+            <ul className="hidden lg:flex gap-6 text-sm font-medium items-center mr-15">
               {navItems.map((item, idx) =>
                 item.children ? (
                   <li key={idx} className="group relative">
@@ -51,15 +50,15 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                         {item.children.map((child) => (
                           <li key={child.label}>
                             <a
-                            href={child.href}
-                            className={`px-3 py-2 rounded-md transition-all duration-300 ${
-                              darkMode
-                                ? "text-gray-200 hover:text-white hover:bg-gray-700/50"
-                                : "text-gray-800 hover:text-black hover:bg-gray-300/30"
-                            }`}
-                          >
-                            {child.label}
-                          </a>
+                              href={child.href}
+                              className={`px-3 py-2 rounded-md transition-all duration-300 ${
+                                darkMode
+                                  ? "text-gray-200 hover:text-white hover:bg-gray-700/50"
+                                  : "text-gray-800 hover:text-black hover:bg-gray-300/30"
+                              }`}
+                            >
+                              {child.label}
+                            </a>
                           </li>
                         ))}
                       </ul>
@@ -81,15 +80,6 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                 )
               )}
             </ul>
-
-            {/* --- Dark Mode Toggle Button --- */}
-            <button
-              onClick={toggleDarkMode}
-              className="p-3 rounded hover:bg-gray-300/30 transition"
-              aria-label="Toggle Dark Mode"
-            >
-              {darkMode ? <Sun size={19} /> : <Moon size={19} />}
-            </button>
 
             {/* --- Mobile Hamburger --- */}
             <div className="lg:hidden">
@@ -161,17 +151,37 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
 
           {/* Social Icons */}
           <div className="flex justify-center gap-6">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer">
-              <FaInstagram size={22}/>
+            <a
+              href="https://www.instagram.com/jerseywoodflooring"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-pink-500 transition"
+            >
+              <FaInstagram size={21} />
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noreferrer">
-              <FaFacebookF size={21}/>
+            <a
+              href="https://www.facebook.com/p/Jersey-wood-flooring-LLC-100090366427710/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-500 transition"
+            >
+              <FaFacebookF size={21} />
             </a>
-            <a href="https://tiktok.com" target="_blank" rel="noreferrer">
-              <FaTiktok size={21}/>
+            <a
+              href="https://www.tiktok.com/@jerseywoodfloorin"
+              target="_blank"
+              rel="noopener noreferrer"
+              className=" hover:text-[#00f2ea] transition"
+            >
+              <FaTiktok size={21} />
             </a>
-            <a href="https://google.com" target="_blank" rel="noreferrer">
-              <FaGoogle size={21}/>
+            <a
+              href="https://www.google.com/search?q=Jersey+Wood+Flooring"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-red-500 transition"
+            >
+              <FaGoogle size={21} />
             </a>
           </div>
         </div>
