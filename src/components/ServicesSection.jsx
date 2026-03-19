@@ -131,9 +131,9 @@ const ServicesSection = ({ darkMode }) => {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center"
             // 3. Apply Staggered Animation to the Grid Container
             variants={gridVariants}
-            initial="hidden"
+          initial="visible"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.12 }}
+          viewport={{ once: true }}
         >
           {services.map((service, index) => (
             <motion.div
