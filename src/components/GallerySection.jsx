@@ -475,3 +475,5 @@ const GallerySection = ({ darkMode }) => {
 };
 
 export default GallerySection;
+
+//test
