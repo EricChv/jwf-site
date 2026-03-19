@@ -1,4 +1,5 @@
 import aboutImg from "../assets/about-img1.webp";
+import { motion } from "framer-motion";
 import { Ruler, Hammer, CheckCircle } from "lucide-react";
 
 const processSteps = [
@@ -34,16 +35,24 @@ const AboutSection = ({ darkMode }) => {
         {/* Left Column: About + Process */}
         <div className="lg:flex-1 flex flex-col justify-center gap-1">
           {/* About text */}
-          <div className="mb-6">
-            <h2
-              className={`text-3xl md:text-4xl font-bold mb-4 ${
+          <div className="mb-8">
+            <motion.h2
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              viewport={{ once: true }}
+              className={`text-3xl md:text-4xl font-bold mb-6 ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
               About
-            </h2>
+            </motion.h2>
 
-            <p
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
+              viewport={{ once: true }}
               className={`max-w-xl leading-relaxed ${
                 darkMode ? "text-gray-300" : "text-gray-700"
               }`}
@@ -55,12 +64,18 @@ const AboutSection = ({ darkMode }) => {
                 over 20 years. We cater to the needs of both residential and commercial clients throughout
                 New Jersey, providing professional installation, restoration, and maintenance of high-quality
                 floors.
-            </p>
+            </motion.p>
 
             {/* Transition / lead-in text */}
-            <p className={`italic max-w-md mt-3 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
+              viewport={{ once: true }}
+              className={`italic max-w-md mt-3 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+            >
               Skip the stress and complication. We've structured the entire project into a straightforward journey that ensures peace of mind and stunning results.
-            </p>
+            </motion.p>
           </div>
 
           {/* Process Steps */}

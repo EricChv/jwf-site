@@ -29,3 +29,29 @@ html {
   }
   
 }
+
+/* Fancybox Styling */
+.fancybox__image {
+  border-radius: 12px;
+}
+
+/* Hide toolbar on mobile, keep close button */
+@media (max-width: 768px) {
+  .fancybox__toolbar {
+    display: none !important;
+  }
+  
+  .fancybox__close {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 9999;
+  }
+}
+
+/* Keep toolbar visible on desktop */
+@media (min-width: 769px) {
+  .fancybox__toolbar {
+    display: flex !important;
+  }
+}

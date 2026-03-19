@@ -29,13 +29,14 @@ const ContactSection = ({ darkMode }) => {
     }
   };
   return (
-    <section id="contact" className="pt-20 pb-25 transition-colors duration-400">
+    <section id="contact" className="pt-20 pb-20 transition-colors duration-400">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            viewport={{ once: true }}
             className={`text-3xl md:text-4xl font-bold mb-4 ${darkMode ? "text-white" : "text-gray-900"}`}
           >
             Contact Us
@@ -44,7 +45,7 @@ const ContactSection = ({ darkMode }) => {
           <p className={`${darkMode ? "text-gray-400" : "text-gray-600"} max-w-2xl mx-auto`}>
             Have a question, need an estimate, or want to schedule a consultation?
             <br />
-            Reach out — we’d love to hear from you.
+            Reach out — we’d love to hear from you. Most replies are sent within one business day.
           </p>
         </div>
 
@@ -70,7 +71,7 @@ const ContactSection = ({ darkMode }) => {
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
-                className="space-y-6"
+                className="space-y-5"
               >
                 <input type="hidden" name="form-name" value="contact" />
                 <p className="hidden">
@@ -128,13 +129,13 @@ const ContactSection = ({ darkMode }) => {
                 </div>
 
                 <button type="submit"
-                  className={`w-full py-3 rounded-lg font-semibold shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
+                  className={`w-full py-3 rounded-lg font-semibold shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
                     darkMode
-                      ? "bg-black/40 text-gray-200 hover:bg-black/30"
-                      : "bg-white text-gray-800 hover:bg-gray-200"
+                      ? "bg-black/22 hover:bg-black/30 text-white"
+                      : "bg-white/24 hover:bg-white/30 text-white"
                   }`}
                 >
-                  Send
+                  Request Free Estimate
                 </button>
               </form>
             )}
@@ -142,7 +143,7 @@ const ContactSection = ({ darkMode }) => {
         </div>
 
         {/* Contact Info */}
-        <div className={`mt-20 text-center space-y-5 ${darkMode ? "text-white" : "text-gray-600"}`}>
+        <div className={`mt-16 text-center space-y-5 ${darkMode ? "text-white" : "text-gray-600"}`}>
           <p className="text-sm opacity-70">Prefer to reach out directly?</p>
 
           <p className="text-lg font-medium flex items-center justify-center gap-3">

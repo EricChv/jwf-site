@@ -235,25 +235,15 @@ const GallerySection = ({ darkMode }) => {
     [activeCategory]
   );
 
-  const getThumbSrc = (src) => {
-    if (!src) return src;
-    const normalized = src.replace(/\/{2,}/g, "/");
-    const dir = normalized.replace(/\/[^/]+$/, "");
-    const base = normalized.replace(/^.*\//, "");
-    const name = base.replace(/\.[^/]+$/, "");
-    // NOTE: If you  using external hosting, this thumb generation logic might need adjustment
-    return `${dir}/thumbs/${name}.webp`;
-  };
-
   useEffect(() => {
     if (galleryRef.current) {
       Fancybox.bind(galleryRef.current, "[data-fancybox]", {
-        mainClass: "custom-fancybox-padding", 
+        mainClass: "custom-fancybox-padding fancybox-mobile", 
         dragToClose: true,
         Toolbar: {
           display: {
             left: ["infobar"],
-            middle: ["zoomIn", "zoomOut", "toggle1to1", "rotate"],
+            middle: [],
             right: ["close"],
           },
         },
@@ -279,7 +269,7 @@ const GallerySection = ({ darkMode }) => {
     return () => {
       Fancybox.destroy();
     };
-  }, [filteredAlbums]);
+  }, []);
 
   const prefersReducedMotion = useReducedMotion();
 
@@ -321,10 +311,11 @@ const GallerySection = ({ darkMode }) => {
     >
       <div className="container mx-auto px-6 text-center">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className={`text-3xl md:text-4xl font-bold mb-4 ${
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          viewport={{ once: true }}
+          className={`text-3xl md:text-4xl font-bold mb-6 ${
             darkMode ? "text-white" : "text-gray-900"
           }`}
         >
@@ -352,7 +343,7 @@ const GallerySection = ({ darkMode }) => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full font-medium transition shrink-0 text-sm md:text-base 
+                className={`px-4 py-2.5 rounded-full font-medium transition shrink-0 text-sm md:text-base 
                   ${
                     activeCategory === cat
                       ? darkMode
@@ -406,9 +397,9 @@ const GallerySection = ({ darkMode }) => {
                   <motion.div
                     className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"
                     variants={gridVariants}
-                    initial="hidden"
+                    initial="visible"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.12 }}
+                    viewport={{ once: true }}
                   >
                     {album.before.map((src, i) => {
                       const captionContent = `<strong>${album.title} - Before ${i + 1}</strong>: ${album.description}`;
@@ -416,20 +407,16 @@ const GallerySection = ({ darkMode }) => {
                         <motion.a 
                           key={i}
                           variants={tileVariants}
-                          className="relative w-fu-[ll aspect-3/4 overflow-hidden rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-[1.02] group"
+                          className="relative w-full aspect-3/4 overflow-hidden rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-[1.02] group"
                           data-fancybox={`album-${album.id}`}
                           href={src}
                           data-caption={captionContent}
                         >
                           <img
-                            src={getThumbSrc(src)}
+                            src={src}
                             alt={`Before ${i + 1}`}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.05]"
                             loading="lazy"
-                            onError={(e) => {
-                              e.currentTarget.onerror = null;
-                              e.currentTarget.src = src;
-                            }}
                           />
                         </motion.a>
                       );
@@ -452,9 +439,9 @@ const GallerySection = ({ darkMode }) => {
                   <motion.div 
                     className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"
                     variants={gridVariants}
-                    initial="hidden"
+                    initial="visible"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.12 }}
+                    viewport={{ once: true }}
                   >
                     {album.after.map((src, i) => {
                       const captionContent = `<strong>${album.title} - After ${i + 1}</strong>: ${album.description}`;
@@ -468,14 +455,10 @@ const GallerySection = ({ darkMode }) => {
                           data-caption={captionContent}
                         >
                           <img
-                            src={getThumbSrc(src)}
+                            src={src}
                             alt={`After ${i + 1}`}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.05]"
                             loading="lazy"
-                            onError={(e) => {
-                              e.currentTarget.onerror = null;
-                              e.currentTarget.src = src;
-                            }}
                           />
                         </motion.a>
                       );
