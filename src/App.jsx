@@ -56,7 +56,7 @@ const App = () => {
     <div
       className={`
         bg-theme-light-bg-main 
-        dark:bg-theme-bg-main 
+        dark:bg-[#121212] 
         transition-colors duration-400
       `}
     >
@@ -66,7 +66,7 @@ const App = () => {
       <AboutSection darkMode={darkMode} />
       
       {/* --- Animated Spacer Bar --- */}
-      <div className="flex justify-center py-20">
+      <div className="flex justify-center py-20 bg-white dark:bg-[#121212]">
         <motion.div
           className={`
             w-[330px] sm:w-[330px] md:w-[2500px] h-1 rounded-full 
@@ -85,7 +85,7 @@ const App = () => {
       <ServicesSection darkMode={darkMode} />
 
       {/* --- Animated Spacer Bar --- */}
-      <div className="flex justify-center py-10">
+      <div className="flex justify-center py-10 bg-white dark:bg-[#121212]">
         <motion.div
           className={`
             w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full 
@@ -104,7 +104,7 @@ const App = () => {
       <GallerySection darkMode={darkMode} />
 
       {/* --- Animated Spacer Bar --- */}
-      <div className="flex justify-center py-10">
+      <div className="flex justify-center py-10 bg-white dark:bg-[#121212]">
         <motion.div
           className={`
             w-[330px] sm:w-[330px] md:w-[1500px] h-1 rounded-full 
